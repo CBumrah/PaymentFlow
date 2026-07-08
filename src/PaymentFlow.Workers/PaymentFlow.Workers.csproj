@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-PaymentFlow.Workers-7cbe179e-4530-44b3-be71-85ad481cb349</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PaymentFlow.Application\PaymentFlow.Application.csproj" />
+    <ProjectReference Include="..\PaymentFlow.Infrastructure\PaymentFlow.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>
