@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using PaymentFlow.Application.Common.Behaviors;
 
 namespace PaymentFlow.Application;
 
@@ -18,6 +19,12 @@ public static class DependencyInjection
         services.AddMediatR(cfg =>
         {
             cfg.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
+
+            // Order matters: behaviors run in the order they're registered.
+            // Logging wraps everything (including validation failures);
+            // Validation runs next, short-circuiting before the real handler.
+            cfg.AddOpenBehavior(typeof(LoggingBehavior<,>));
+            cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
         });
 
         services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly);
